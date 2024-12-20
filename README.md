@@ -5,7 +5,7 @@
   Post-Finder-Prime-Botz
 </h1>
 
-![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=Hello+My+Name+is+ᴍʀ.+ᴘʀɪᴍᴇ;I+work+for+Telegram+Bot+Automatomation;I+Am+Super+Noob;I+Learn+From+Official+Document;You+can+see+the+bots+made+by+me+by+going+to+Telegram;Thanks+For+Visiting+Github;)
+![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=Hello+My+Name+is+ᴍʀ.+ᴘʀɪᴍᴇ;And+this+is+A+Advance+Post+Finder+Bot:Thanks+For+Visiting+Prime+Botz:Join+Telegram+@Prime+Botz)
 </p>
 
 
