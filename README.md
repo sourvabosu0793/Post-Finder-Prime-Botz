@@ -5,6 +5,10 @@
   Post-Finder-Prime-Botz
 </h1>
 
+![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=Hello+My+Name+is+ᴍʀ.+ᴘʀɪᴍᴇ;I+work+for+Telegram+Bot+Automatomation;I+Am+Super+Noob;I+Learn+From+Official+Document;You+can+see+the+bots+made+by+me+by+going+to+Telegram;Thanks+For+Visiting+Github;)
+</p>
+
+
 ## Features
 
 - <b>connect multiple channel
