@@ -91,33 +91,59 @@ async def search_imdb(query):
 
 async def force_sub(bot, message):
     group = await get_group(message.chat.id)
-    f_sub = group["f_sub"]
+    f_sub = group.get("f_sub", False)  # Default to False if f_sub is missing
     admin = group["user_id"]
-    if f_sub==False:
-       return True
+
+    # If no forced subscription is required
+    if not f_sub:
+        return True
+
+    # If the user is not present in the message (e.g., bot messages)
     if message.from_user is None:
-       return True 
+        return True 
+
     try:
-       f_link = (await bot.get_chat(f_sub)).invite_link
-       member = await bot.get_chat_member(f_sub, message.from_user.id)
-       if member.status==enums.ChatMemberStatus.BANNED:
-          await message.reply(f"Sorry {message.from_user.mention}!\n You are banned in our channel, you will be banned from here within 10 seconds")
-          await asyncio.sleep(10)
-          await bot.ban_chat_member(message.chat.id, message.from_user.id)
-          return False       
+        # Get the invite link for the forced subscription channel
+        f_link = (await bot.get_chat(f_sub)).invite_link
+        # Check if the user is a member of the forced subscription channel
+        member = await bot.get_chat_member(f_sub, message.from_user.id)
+
+        if member.status == enums.ChatMemberStatus.BANNED:
+            await message.reply(
+                f"Sorry {message.from_user.mention}!\nYou are banned in our channel, "
+                "and you will be banned from here within 10 seconds."
+            )
+            await asyncio.sleep(10)
+            await bot.ban_chat_member(message.chat.id, message.from_user.id)
+            return False
+
     except UserNotParticipant:
-       await bot.restrict_chat_member(chat_id=message.chat.id, 
-                                      user_id=message.from_user.id,
-                                      permissions=ChatPermissions(can_send_messages=False)
-                                      )
-       await message.reply(f"⚠ Dear User {message.from_user.mention}!\n\nto send message in the group,You have to join in our channel to message here", 
-                       reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Join Channel", url=f_link)],
-                                                          [InlineKeyboardButton("Try Again", callback_data=f"checksub_{message.from_user.id}")]]))
-       await message.delete()
-       return False
+        # Restrict the user in the group if they're not a participant of the channel
+        await bot.restrict_chat_member(
+            chat_id=message.chat.id,
+            user_id=message.from_user.id,
+            permissions=ChatPermissions(can_send_messages=False)
+        )
+        await message.reply(
+            f"⚠ Dear User {message.from_user.mention}!\n\n"
+            "To send messages in this group, you must join our channel first.",
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("Join Channel", url=f_link)],
+                [InlineKeyboardButton("Try Again", callback_data=f"checksub_{message.from_user.id}")]
+            ])
+        )
+        await message.delete()
+        return False
+
     except Exception as e:
-       await bot.send_message(chat_id=admin, text=f"❌ Error in Fsub:\n`{str(e)}`")
-       return False 
-    else:
-       return True 
+        # Log any unexpected errors to the admin
+        await bot.send_message(
+            chat_id=admin,
+            text=f"❌ Error in Fsub:\n{str(e)}\nGroup ID: {message.chat.id}\nUser ID: {message.from_user.id}"
+        )
+        return False
+
+    # If all checks pass
+    return True
+    
 
