@@ -33,7 +33,7 @@ async def search(bot, message):
     if message.text.startswith("/"):
         return    
     query = message.text  # সার্চ কুইয়েরি নিচ্ছে
-    head = "<u>Here is the results 👇\n\n💢 Powered By </u> <b><I> @Prime_Botz ❗\n⋆★⋆━━━━━━★━━━━⋆★⋆\n</I></b>\n\n"
+    head = "<u>Here is the results 👇\n\n💢 Powered By </u> <b><I> @sb_botzupdate ❗\n⋆★⋆━━━━━━★━━━━⋆★⋆\n</I></b>\n\n"
     results = ""
     try:
         for channel in channels:
