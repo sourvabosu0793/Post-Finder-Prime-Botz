@@ -1,7 +1,7 @@
-API_ID       = 
-API_HASH     = ""
+API_ID       = "24579269"
+API_HASH     = "99dff6c471774c2be6ff3d4623a6c0c0"
 BOT_TOKEN    = ""
 SESSION      = ""
 DATABASE_URI = ""
-LOG_CHANNEL  = -100
-ADMIN        = 
+LOG_CHANNEL  = "-1002224684022"
+ADMIN        = "6366880905"
