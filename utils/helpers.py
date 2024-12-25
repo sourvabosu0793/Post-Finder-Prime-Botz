@@ -143,7 +143,7 @@ async def force_sub(bot, message):
         )
         return False
 
-    # If all checks pass
+    # If all checks pas
     return True
     
 
